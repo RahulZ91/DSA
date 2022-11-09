@@ -1,1 +1,74 @@
 // Finding the first and last occurence of the specified key in a sorted array
+#include <iostream>
+
+using namespace std;
+
+int FirstOccurence(int arr[],int size, int key)
+{
+    // define the start and end index
+    int start=0;
+    int end=size-1;
+    int ans;
+    int mid=start + (end-start)/2;
+    
+    while(start<=end)
+    {
+        if(arr[mid] == key)
+            ans=mid;		// store index
+	    end = mid - 1;
+            
+        if(key>arr[mid])
+        {
+            start=mid+1;
+        }
+        else
+        {
+            end=mid-1;
+        }
+        mid=start + (end-start)/2;
+    }
+    return -1;
+}
+
+int LastOccurence(int arr[],int size, int key)
+{
+    // define the start and end index
+    int start=0;
+    int end=size-1;
+    int ans;
+    int mid=start + (end-start)/2;
+    
+    while(start<=end)
+    {
+        if(arr[mid] == key)
+            ans=mid;		// store index
+	    start = mid + 1;
+            
+        if(key>arr[mid])
+        {
+            start=mid+1;
+        }
+        else
+        {
+            end=mid-1;
+        }
+        mid=start + (end-start)/2;
+    }
+    return -1;
+}
+
+
+
+int main()
+{
+    int even[10]={4,6,8,9,10,12,12,12,20,22};
+    int odd[5]={5,9,13,17,19};
+
+    int index=FirstOccurence(even,10,12);
+    cout<<"First occurence of 12 is at Index "<<index;
+    
+    int indexLast=LastOccurence(even,10,12);
+    cout<<"\nLast occurence of 12 is at Index "<<indexLast;
+
+    return 0;
+}
